@@ -1,224 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Livros, música e perfis oficiais de Amarildo Adão Ferraz.">
-  <title>Amarildo Adão Ferraz | Livros e música</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <style>
-    :root {
-      --ink: #17251f;
-      --muted: #66736b;
-      --paper: #f5f2e9;
-      --paper-light: #fffdf8;
-      --green: #174c3c;
-      --green-light: #d9e7db;
-      --coral: #c85b45;
-      --yellow: #f0c765;
-      --line: rgba(23, 37, 31, .14);
-      --shadow: 0 22px 60px rgba(23, 37, 31, .11);
-      --sans: 'DM Sans', sans-serif;
-      --display: 'Playfair Display', Georgia, serif;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: var(--sans);
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-    .page { overflow: hidden; }
-    .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
-
-    .hero {
-      min-height: 620px;
-      padding: 28px 0 90px;
-      position: relative;
-      background:
-        radial-gradient(circle at 85% 18%, rgba(240,199,101,.32), transparent 19rem),
-        linear-gradient(135deg, #dce9d9 0%, var(--paper) 53%, #f5d9c9 100%);
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      right: -150px;
-      bottom: -205px;
-      border: 1px solid rgba(23,76,60,.18);
-      border-radius: 50%;
-      box-shadow: 0 0 0 28px rgba(23,76,60,.04), 0 0 0 57px rgba(23,76,60,.035);
-      pointer-events: none;
-    }
-    .topline { display: flex; align-items: center; justify-content: space-between; }
-    .mark { font-size: .75rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
-    .toplink { font-size: .82rem; text-decoration: none; color: var(--green); }
-    .toplink i { margin-left: .35rem; }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items: center; margin-top: 100px; }
-    .eyebrow { color: var(--coral); font-size: .74rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
-    h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 600; }
-    h1 { max-width: 700px; margin-top: 18px; font-size: clamp(3.3rem, 8vw, 6.7rem); line-height: .93; letter-spacing: -.055em; }
-    .intro { max-width: 490px; margin: 28px 0 0; color: var(--muted); font-size: 1.02rem; line-height: 1.7; }
-    .hero-portrait { justify-self: end; width: min(100%, 430px); position: relative; transform: rotate(2deg); }
-    .hero-portrait::before { content: ''; position: absolute; inset: 14px -14px -14px 14px; border: 1px solid rgba(23,76,60,.3); z-index: -1; }
-    .hero-portrait img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border: 9px solid var(--paper-light); box-shadow: var(--shadow); }
-
-    .content { padding: 100px 0 110px; }
-    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 30px; }
-    .section-heading h2 { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1; }
-    .section-heading p { max-width: 290px; margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.55; text-align: right; }
-    .profile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-bottom: 110px; }
-    .profile-card { min-height: 174px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--line); background: var(--paper-light); box-shadow: 0 8px 25px rgba(23,37,31,.035); text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-    .profile-card:hover { transform: translateY(-5px); border-color: var(--green); box-shadow: var(--shadow); }
-    .card-top { display: flex; justify-content: space-between; align-items: start; }
-    .profile-card i { font-size: 1.55rem; color: var(--green); }
-    .profile-card .arrow { color: var(--coral); font-size: .9rem; }
-    .profile-card h3 { margin-top: 22px; font-size: 1.45rem; }
-    .profile-card span { color: var(--muted); font-size: .82rem; }
-    .book-section { display: grid; grid-template-columns: .85fr 1.15fr; gap: 70px; align-items: start; }
-    .book-section > div:first-child { position: sticky; top: 25px; }
-    .book-section h2 { max-width: 370px; margin-top: 15px; font-size: clamp(2.4rem, 5vw, 4.1rem); line-height: .98; }
-    .book-section .note { max-width: 360px; margin-top: 23px; color: var(--muted); line-height: 1.65; }
-    .book-card { display: grid; grid-template-columns: 155px 1fr; min-height: 280px; background: var(--green); color: #fffdf8; box-shadow: var(--shadow); }
-    .book-spine { display: grid; place-items: center; padding: 20px; background: var(--coral); writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--display); font-size: 1.2rem; text-align: center; }
-    .book-info { padding: 37px 34px; }
-    .book-info small { color: var(--yellow); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; }
-    .book-info h3 { margin: 20px 0 14px; font-size: 2rem; line-height: 1.08; }
-    .book-info p { margin: 0 0 28px; color: #c8d7ca; font-size: .9rem; line-height: 1.55; }
-    .read-link { display: inline-flex; align-items: center; gap: 10px; padding: 11px 16px; color: var(--ink); background: var(--yellow); font-size: .83rem; font-weight: 700; text-decoration: none; }
-    .read-link:hover { background: #fff0bd; }
-    footer { padding: 26px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
-    footer .wrap { display: flex; justify-content: space-between; gap: 20px; }
-
-    @media (max-width: 720px) {
-      .wrap { width: min(100% - 34px, 550px); }
-      .hero { min-height: auto; padding-bottom: 74px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 54px; margin-top: 75px; }
-      .hero-portrait { justify-self: center; width: min(84vw, 390px); }
-      .content { padding: 72px 0 78px; }
-      .section-heading { display: block; }
-      .section-heading p { margin-top: 15px; text-align: left; }
-      .profile-grid { grid-template-columns: 1fr; margin-bottom: 78px; }
-      .profile-card { min-height: 150px; }
-      .book-section { display: block; }
-      .book-section > div:first-child { position: static; margin-bottom: 34px; }
-      .book-card { grid-template-columns: 92px 1fr; }
-      .book-info { padding: 28px 22px; }
-      .book-info h3 { font-size: 1.55rem; }
-      footer .wrap { display: block; }
-      footer p { margin: 7px 0; }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <header class="hero">
-      <div class="wrap">
-        <div class="topline">
-          <span class="mark">AAF · autor e artista</span>
-          <a class="toplink" href="#livros">Ir para os livros <i class="fa-solid fa-arrow-down"></i></a>
-        </div>
-        <div class="hero-grid">
-          <div>
-            <span class="eyebrow">Palavras que permanecem</span>
-            <h1>Amarildo<br>Adão Ferraz</h1>
-            <p class="intro">Um espaço para acompanhar meus livros, ouvir minhas canções e encontrar meus perfis oficiais.</p>
-          </div>
-          <div class="hero-portrait">
-            <img src="img.png" alt="Amarildo Adão Ferraz tocando violão ao entardecer">
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main class="content wrap">
-      <section aria-labelledby="musica-titulo">
-        <div class="section-heading">
-          <div>
-            <span class="eyebrow">Onde ouvir</span>
-            <h2 id="musica-titulo">Perfis musicais</h2>
-          </div>
-          <p>Minhas músicas reunidas nas principais plataformas de streaming.</p>
-        </div>
-        <div class="profile-grid">
-          <a class="profile-card" href="https://open.spotify.com/intl-pt/artist/3t08txZ7yCoJQ0yHrl72IC" target="_blank" rel="noopener noreferrer">
-            <div class="card-top"><i class="fa-brands fa-spotify"></i><i class="fa-solid fa-arrow-up-right-from-square arrow"></i></div>
-            <div><h3>Spotify</h3><span>Ouça no Spotify</span></div>
-          </a>
-          <a class="profile-card" href="https://tidal.com/artist/85681931" target="_blank" rel="noopener noreferrer">
-            <div class="card-top"><i class="fa-solid fa-water"></i><i class="fa-solid fa-arrow-up-right-from-square arrow"></i></div>
-            <div><h3>Tidal</h3><span>Ouça no Tidal</span></div>
-          </a>
-          <a class="profile-card" href="https://music.youtube.com/playlist?list=OLAK5uy_kmyGmfc7GXx60n-KAAefVkOv9BVfMP0pU" target="_blank" rel="noopener noreferrer">
-            <div class="card-top"><i class="fa-brands fa-youtube"></i><i class="fa-solid fa-arrow-up-right-from-square arrow"></i></div>
-            <div><h3>YouTube Music</h3><span>Ouça no YouTube Music</span></div>
-          </a>
-          <a class="profile-card" href="https://www.deezer.com/br/artist/415345862" target="_blank" rel="noopener noreferrer">
-            <div class="card-top"><i class="fa-solid fa-music"></i><i class="fa-solid fa-arrow-up-right-from-square arrow"></i></div>
-            <div><h3>Deezer</h3><span>Ouça no Deezer</span></div>
-          </a>
-        </div>
-      </section>
-
-      <section aria-labelledby="redes-titulo">
-        <div class="section-heading">
-          <div>
-            <span class="eyebrow">Vamos conversar</span>
-            <h2 id="redes-titulo">Redes sociais</h2>
-          </div>
-          <p>Acompanhe novidades, reflexões e lançamentos.</p>
-        </div>
-        <div class="profile-grid">
-          <a class="profile-card" href="https://www.instagram.com/ferrazamarildoadao/" target="_blank" rel="noopener noreferrer">
-            <div class="card-top"><i class="fa-brands fa-instagram"></i><i class="fa-solid fa-arrow-up-right-from-square arrow"></i></div>
-            <div><h3>Instagram</h3><span>@ferrazamarildoadao</span></div>
-          </a>
-          <a class="profile-card" href="https://www.facebook.com/amarildo.ferraz.52/" target="_blank" rel="noopener noreferrer">
-            <div class="card-top"><i class="fa-brands fa-facebook-f"></i><i class="fa-solid fa-arrow-up-right-from-square arrow"></i></div>
-            <div><h3>Facebook</h3><span>Amarildo Ferraz</span></div>
-          </a>
-          <a class="profile-card" href="https://wa.me/554988711100" target="_blank" rel="noopener noreferrer">
-            <div class="card-top"><i class="fa-brands fa-whatsapp"></i><i class="fa-solid fa-arrow-up-right-from-square arrow"></i></div>
-            <div><h3>WhatsApp</h3><span>Fale comigo</span></div>
-          </a>
-        </div>
-      </section>
-
-      <section class="book-section" id="livros" aria-labelledby="livros-titulo">
-        <div>
-          <span class="eyebrow">Biblioteca</span>
-          <h2 id="livros-titulo">Livros para ler com calma.</h2>
-          <p class="note">Uma lista em construção, começando por esta primeira obra.</p>
-        </div>
-        <article class="book-card">
-          <div class="book-spine">Conhecendo a Mente de Deus</div>
-          <div class="book-info">
-            <small>Primeiro livro</small>
-            <h3>Conhecendo a Mente de Deus</h3>
-            <p>Um devocional interativo com reflexões para fortalecer a fé e renovar o olhar sobre a vida.</p>
-            <a class="read-link" href="livro/">Começar a leitura <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </article>
-      </section>
-    </main>
-
-    <footer>
-      <div class="wrap"><p>© <span id="year"></span> Amarildo Adão Ferraz</p><p>Livros, música e presença.</p></div>
-    </footer>
-  </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-</body>
-</html><!DOCTYPE html>
-<html lang="pt-BR">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Conhecendo a Mente de Deus — Amarildo Adão Ferraz</title>
@@ -226,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <!-- ====================================================================
      ESPAÇO PARA O SCRIPT DE ANÚNCIOS (ex.: Google AdSense)
@@ -310,6 +93,11 @@
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
     flex:1;
   }
+  .home-link{
+    color:var(--text); text-decoration:none; font-family:var(--sans);
+    font-size:.8rem; white-space:nowrap;
+  }
+  .home-link:hover{ color:var(--accent); }
   .icon-btn{
     background:none; border:1px solid var(--border); color:var(--text);
     width:36px; height:36px; border-radius:10px; cursor:pointer;
@@ -456,6 +244,7 @@
 <header class="topbar">
   <button class="icon-btn toc-toggle" id="tocToggle" aria-label="Abrir índice">☰</button>
   <div class="title-mini">Conhecendo a Mente de Deus</div>
+  <a class="home-link" href="../" aria-label="Voltar para a página inicial"><i class="fa-solid fa-house"></i> Início</a>
   <button class="icon-btn" id="themeToggle" aria-label="Alternar tema">◐</button>
 </header>
 
