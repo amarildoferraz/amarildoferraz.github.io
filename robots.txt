@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://amarildoferraz.github.io/sitemap.xml
