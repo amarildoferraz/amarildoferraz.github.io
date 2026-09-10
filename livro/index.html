@@ -157,6 +157,11 @@
     text-align:center; padding:3rem 1rem 2.5rem;
     border-bottom:1px solid var(--border); margin-bottom:2rem;
   }
+  .cover-image{
+    display:block; width:min(180px, 70vw); aspect-ratio:2 / 3;
+    object-fit:cover; margin:0 auto 1.75rem; border-radius:8px;
+    box-shadow:var(--shadow);
+  }
   .cover .kicker{
     font-family:var(--sans); text-transform:uppercase; letter-spacing:.18em;
     font-size:.75rem; color:var(--text-soft); margin-bottom:1rem;
@@ -268,6 +273,7 @@
 
   <main id="main">
     <section class="cover" id="cover">
+      <img class="cover-image" src="../livro-capa.jpg" alt="Capa do livro Conhecendo a Mente de Deus">
       <div class="kicker">E-book devocional</div>
       <h1>Conhecendo a Mente de Deus</h1>
       <div class="author">Amarildo Adão Ferraz</div>
