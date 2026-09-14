@@ -143,6 +143,10 @@
     border-left:3px solid transparent;
   }
   nav.toc li a:hover{ background:var(--accent-soft); }
+  nav.toc li.book-title-item a{
+    border-left-color:var(--accent); color:var(--accent); font-weight:800;
+    background:var(--accent-soft); margin-bottom:.5rem;
+  }
   nav.toc li a.active{
     border-left-color:var(--accent); color:var(--accent); font-weight:700;
     background:var(--accent-soft);
@@ -312,6 +316,12 @@ const chaptersRoot = document.getElementById('chaptersRoot');
 document.getElementById('introBody').innerHTML = data.intro_html;
 
 // Build TOC
+const bookTitle = document.querySelector('.cover h1')?.textContent || 'Livro';
+const titleLi = document.createElement('li');
+titleLi.className = 'book-title-item';
+titleLi.innerHTML = `<a href="#cover">${bookTitle}</a>`;
+tocList.appendChild(titleLi);
+
 const introLi = document.createElement('li');
 introLi.innerHTML = '<a href="#intro">Apresentação</a>';
 tocList.appendChild(introLi);
