@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1315109521438251"
+  crossorigin="anonymous"></script>
 
 <!-- ====================================================================
      ESPAÇO PARA O SCRIPT DE ANÚNCIOS (ex.: Google AdSense)
@@ -175,6 +177,10 @@
     font-family:var(--serif); font-size:1.5rem; margin:0 0 .3rem;
     color:var(--accent); line-height:1.35;
   }
+  article.chapter .chapter-subtitle{
+    font-family:var(--serif); font-size:1.15rem; margin:0 0 1rem;
+    color:var(--text); line-height:1.45; font-weight:700;
+  }
   article.chapter .chap-eyebrow{
     font-family:var(--sans); text-transform:uppercase; letter-spacing:.14em;
     font-size:.75rem; color:var(--text-soft); margin-bottom:1rem; display:block;
@@ -297,6 +303,17 @@
 <script>
 const data = JSON.parse(document.getElementById('book-data').textContent);
 
+function extractLeadHeading(html) {
+  if (!html) return '';
+  const temp = document.createElement('div');
+  temp.innerHTML = html;
+  const firstParagraph = temp.querySelector('p');
+  if (!firstParagraph) return '';
+  const text = firstParagraph.textContent.replace(/\s+/g, ' ').trim();
+  if (!text) return '';
+  return text.length > 110 ? text.slice(0, 110).trim() + '…' : text;
+}
+
 const tocList = document.getElementById('tocList');
 const chaptersRoot = document.getElementById('chaptersRoot');
 document.getElementById('introBody').innerHTML = data.intro_html;
@@ -321,10 +338,12 @@ data.chapters.forEach((c, idx) => {
   const art = document.createElement('article');
   art.className = 'chapter';
   art.id = c.id;
+  const leadHeading = extractLeadHeading(c.html);
   art.innerHTML = `
     <span class="chap-eyebrow">Seção ${idx + 1} de ${data.chapters.length}</span>
     <h2 class="chap-title">${c.title}</h2>
     ${c.epigraph_html ? `<div class="epigraph">${c.epigraph_html}</div>` : ''}
+    ${leadHeading ? `<h3 class="chapter-subtitle">${leadHeading}</h3>` : ''}
     <div>${c.html}</div>
   `;
   chaptersRoot.appendChild(art);
